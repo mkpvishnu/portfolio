@@ -7,6 +7,7 @@ const Header = ({ userProfile, onSectionSelect, onLogoClick, isExpanded }) => {
 
   const navItems = [
     { id: 'education', label: 'Education' },
+    { id: 'skills', label: 'Skills' },
     { id: 'experience', label: 'Experience' },
     { id: 'projects', label: 'Projects' },
     { id: 'contact', label: 'Contact' },

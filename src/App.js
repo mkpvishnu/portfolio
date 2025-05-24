@@ -12,12 +12,12 @@ const GITHUB_USERNAME = 'mkpvishnu'; // Replace with your GitHub username
 function App() {
   const [userProfile, setUserProfile] = useState(null);
   const [repos, setRepos] = useState([]);
-  const [activeSection, setActiveSection] = useState(null); // e.g., 'education', 'experience', 'projects'
+  const [activeSection, setActiveSection] = useState(null); // Start with no section selected
   const [selectedProject, setSelectedProject] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const [isHeaderExpanded, setIsHeaderExpanded] = useState(true);
+  const [isHeaderExpanded, setIsHeaderExpanded] = useState(true); // Start with header expanded
 
   const GITHUB_API_BASE_URL = 'https://api.github.com';
 
@@ -107,6 +107,7 @@ function App() {
       <ContentDisplay
         activeSection={activeSection}
         educationData={staticData.education}
+        skillsData={staticData.skills}
         experienceData={staticData.experience}
         projectsData={repos} // From GitHub API
         contactData={staticData.contact} // Added contact data

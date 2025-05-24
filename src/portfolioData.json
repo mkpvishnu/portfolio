@@ -4,7 +4,7 @@
       "degree": "M.Tech ML Applications in Signal Processing", 
       "institution": "Vellore Institute of Technology", 
       "period": "2020-2022", 
-      "details": "Specialized in Data Analytics and Machine Learning for Signal Processing and Communciation Systems" 
+      "details": "Specialized in Data Analytics and Machine Learning for Signal Processing and Communication Systems" 
     },
     { 
       "degree": "B.Tech Electronics and Communication", 
@@ -13,6 +13,77 @@
       "details": "Focused on Electronics and Communication Engineering" 
     }
   ],
+  "skills": {
+    "testing": {
+      "title": "Testing & Quality Assurance",
+      "items": [
+        "End-to-End Testing",
+        "API Testing & Automation",
+        "Performance Testing",
+        "Load Testing",
+        "Integration Testing",
+        "AI/ML Model Testing",
+        "Test Framework Development"
+      ]
+    },
+    "programming": {
+      "title": "Programming Languages",
+      "items": [
+        "Python",
+        "JavaScript/TypeScript",
+        "Java",
+        "MATLAB",
+        "SQL"
+      ]
+    },
+    "frameworks": {
+      "title": "Frameworks & Tools",
+      "items": [
+        "FastAPI",
+        "React",
+        "Karate DSL",
+        "Selenium",
+        "Jest",
+        "Pytest",
+        "Docker",
+        "Kubernetes"
+      ]
+    },
+    "cloud": {
+      "title": "Cloud & DevOps",
+      "items": [
+        "AWS (EC2, S3, Lambda)",
+        "OpenSearch/Elasticsearch",
+        "CI/CD Pipelines",
+        "Infrastructure as Code",
+        "Monitoring & Logging"
+      ]
+    },
+    "ai_ml": {
+      "title": "AI/ML Technologies",
+      "items": [
+        "Machine Learning Pipelines",
+        "Model Validation",
+        "Sentiment Analysis",
+        "Language Detection",
+        "BLEU/ROUGE Metrics",
+        "Signal Processing",
+        "Data Analytics"
+      ]
+    },
+    "tools": {
+      "title": "Development Tools",
+      "items": [
+        "Git/GitHub",
+        "VS Code",
+        "Postman",
+        "JIRA",
+        "MkDocs",
+        "Swagger/OpenAPI",
+        "Jupyter Notebooks"
+      ]
+    }
+  },
   "experience": [
     {
       "title": "Software Development Engineer in Test",
@@ -79,7 +150,7 @@
     }
   ],
   "contact": {
-    "email": "mkpvishnu@example.com",
+    "email": "mkpvishnu@gmail.com",
     "linkedin": "https://www.linkedin.com/in/mkpvishnu/",
     "github": "https://github.com/mkpvishnu"
   }

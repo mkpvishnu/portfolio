@@ -3,10 +3,12 @@ import './ContentDisplay.css';
 import ProjectsList from '../ProjectsList/ProjectsList';
 import ProjectDetail from '../ProjectDetail/ProjectDetail';
 import ExperienceDisplay from '../ExperienceDisplay/ExperienceDisplay';
+import SkillsDisplay from '../SkillsDisplay/SkillsDisplay';
 
 const ContentDisplay = ({
   activeSection,
   educationData,
+  skillsData,
   experienceData,
   projectsData,
   contactData,
@@ -33,6 +35,14 @@ const ContentDisplay = ({
               <p>{edu.details}</p>
             </article>
           ))}
+        </section>
+      );
+      break;
+    case 'skills':
+      content = (
+        <section className="content-section skills-section">
+          <h2>Skills & Technologies</h2>
+          <SkillsDisplay skillsData={skillsData} />
         </section>
       );
       break;
