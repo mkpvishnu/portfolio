@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="photo-container">
+                <img src="" alt="My Photo" id="profilePhoto"> <!-- src will be set by JS -->
+                <h1 id="profileName"></h1>
+                <p id="profileTagline"></p>
+                <nav class="branches">
+                    <button data-section="education">Education</button>
+                    <button data-section="experience">Experience</button>
+                    <button data-section="projects">Projects</button>
+                    <button data-section="contact">Contact</button>
+                </nav>
+            </div>
+        </header>
+
+        <main id="contentArea">
+            <section id="education" class="content-section">
+                <h2>Education</h2>
+                <div id="educationContainer">
+                    <!-- Education data will be injected here -->
+                </div>
+            </section>
+            <section id="experience" class="content-section">
+                <h2>Experience</h2>
+                <div id="experienceContainer">
+                    <!-- Experience data will be injected here -->
+                </div>
+            </section>
+            <section id="projects" class="content-section">
+                <h2>Projects</h2>
+                <div class="project-tiles" id="projectTilesContainer">
+                    <!-- Project tiles will be injected here -->
+                </div>
+            </section>
+            <section id="contact" class="content-section">
+                <h2>Contact</h2>
+                <div id="contactContainer">
+                    <!-- Contact data will be injected here -->
+                </div>
+            </section>
+            <section id="project-detail" class="content-section">
+                <!-- Placeholder for detailed project view -->
+                <h2 id="projectDetailName"></h2>
+                <p id="projectDetailDescription"></p>
+                <p><strong>Technologies:</strong> <span id="projectDetailTechnologies"></span></p>
+                <a href="#" id="projectDetailRepoUrl" target="_blank">View on GitHub</a>
+                <a href="#" id="projectDetailLiveDemoUrl" target="_blank">View Live Demo</a>
+                <img src="" alt="Project Screenshot" id="projectDetailImage" style="max-width: 100%; margin-top: 15px; display: none;">
+                <button id="backToProjects">Back to Projects</button>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

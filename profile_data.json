@@ -1,0 +1,78 @@
+{
+  "profile": {
+    "name": "Your Name",
+    "tagline": "Passionate Developer | Tech Enthusiast | Lifelong Learner",
+    "photo": "data/profile_photo.jpg"
+  },
+  "education": [
+    {
+      "degree": "Master of Science in Computer Science",
+      "institution": "University of Advanced Technology",
+      "period": "2020 - 2022",
+      "details": "Focused on AI and Machine Learning. Published a paper on innovative algorithms."
+    },
+    {
+      "degree": "Bachelor of Science in Software Engineering",
+      "institution": "State University",
+      "period": "2016 - 2020",
+      "details": "Graduated with honors. President of the Coding Club."
+    }
+  ],
+  "experience": [
+    {
+      "title": "Senior Software Engineer",
+      "company": "Tech Solutions Inc.",
+      "period": "2022 - Present",
+      "responsibilities": [
+        "Led a team of 5 developers in creating a new cloud-based platform.",
+        "Designed and implemented scalable microservices.",
+        "Improved system performance by 30% through optimizations."
+      ]
+    },
+    {
+      "title": "Junior Developer",
+      "company": "Web Wizards LLC",
+      "period": "2020 - 2022",
+      "responsibilities": [
+        "Developed and maintained client websites using modern web technologies.",
+        "Collaborated with designers to create user-friendly interfaces.",
+        "Participated in code reviews and agile development processes."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "project1",
+      "name": "AI Powered Chatbot",
+      "description": "A sophisticated chatbot using natural language processing to understand and respond to user queries. Built with Python and TensorFlow.",
+      "technologies": ["Python", "TensorFlow", "Flask", "Docker"],
+      "repoUrl": "https://github.com/yourusername/ai-chatbot-repo",
+      "liveDemoUrl": null,
+      "thumbnail": "data/project1_thumb.jpg"
+    },
+    {
+      "id": "project2",
+      "name": "E-commerce Platform",
+      "description": "A full-featured e-commerce website with product listings, shopping cart, and payment integration. Developed using MERN stack.",
+      "technologies": ["MongoDB", "Express.js", "React", "Node.js", "Stripe API"],
+      "repoUrl": "https://github.com/yourusername/ecommerce-platform-repo",
+      "liveDemoUrl": "https://example-ecommerce.com",
+      "thumbnail": "data/project2_thumb.jpg"
+    },
+    {
+      "id": "project3",
+      "name": "Mobile Task Manager",
+      "description": "A cross-platform mobile application for task management, helping users organize their daily activities. Built with React Native.",
+      "technologies": ["React Native", "Firebase", "Redux"],
+      "repoUrl": "https://github.com/yourusername/task-manager-app-repo",
+      "liveDemoUrl": null,
+      "thumbnail": "data/project3_thumb.jpg"
+    }
+  ],
+  "contact": {
+    "email": "your.email@example.com",
+    "linkedin": "https://linkedin.com/in/yourprofile",
+    "github": "https://github.com/yourusername",
+    "twitter": "https://twitter.com/yourusername"
+  }
+}
