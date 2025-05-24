@@ -5,6 +5,7 @@ import ProjectDetail from '../ProjectDetail/ProjectDetail';
 import ExperienceDisplay from '../ExperienceDisplay/ExperienceDisplay';
 import SkillsDisplay from '../SkillsDisplay/SkillsDisplay';
 import BlogLanding from '../BlogLanding/BlogLanding';
+import BlogPost from '../BlogPost/BlogPost';
 
 const ContentDisplay = ({
   activeSection,
@@ -19,6 +20,7 @@ const ContentDisplay = ({
   isHeaderExpanded,
   userProfile,
   onSectionSelect, // Add this prop to handle navigation from blog landing
+  sectionParams, // Add this to handle parameters like blog slug
 }) => {
   let content = null;
 
@@ -33,6 +35,19 @@ const ContentDisplay = ({
 
   switch (activeSection) {
     case 'blog':
+      content = <BlogLanding userProfile={userProfile} onNavigate={onSectionSelect} />;
+      break;
+    case 'blogPost':
+      content = (
+        <BlogPost 
+          slug={sectionParams?.slug} 
+          onBack={() => onSectionSelect('blog')}
+          onNavigate={onSectionSelect}
+        />
+      );
+      break;
+    case 'blogList':
+      // For now, redirect to blog landing - later we can create a dedicated BlogList component
       content = <BlogLanding userProfile={userProfile} onNavigate={onSectionSelect} />;
       break;
     case 'education':
@@ -105,7 +120,7 @@ const ContentDisplay = ({
 
   return (
     <main className={`content-display ${activeSection ? 'anmt-show' : 'anmt-hide'} ${isHeaderExpanded ? 'header-expanded' : 'header-collapsed'}`}>
-      {activeSection && activeSection !== 'projectDetail' && activeSection !== 'projects' && activeSection !== 'blog' && (
+      {activeSection && activeSection !== 'projectDetail' && activeSection !== 'projects' && activeSection !== 'blog' && activeSection !== 'blogPost' && activeSection !== 'blogList' && (
         <button onClick={onClose} className="back-button main-back-button">Close</button>
       )}
       {content}

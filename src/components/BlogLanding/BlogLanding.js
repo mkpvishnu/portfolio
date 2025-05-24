@@ -1,37 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './BlogLanding.css';
+import BlogService from '../../blogs/BlogService';
 
 const BlogLanding = ({ userProfile, onNavigate }) => {
-  // Featured blog posts/articles (can be moved to portfolioData.json later)
-  const featuredPosts = [
-    {
-      id: 1,
-      title: "Building Robust AI Testing Frameworks at Scale",
-      excerpt: "How I architected and developed a comprehensive AI testing framework using FastAPI that reduced testing time by 60% while improving accuracy metrics.",
-      date: "2024-11-15",
-      readTime: "8 min read",
-      tags: ["AI Testing", "FastAPI", "Quality Assurance"],
-      featured: true
-    },
-    {
-      id: 2,
-      title: "From Manual to Automated: Enterprise ML Pipeline Testing",
-      excerpt: "A deep dive into testing machine learning pipelines at enterprise scale, covering validation frameworks and quality gates for production deployment.",
-      date: "2024-10-22",
-      readTime: "12 min read",
-      tags: ["Machine Learning", "Testing", "DevOps"],
-      featured: false
-    },
-    {
-      id: 3,
-      title: "Karate DSL: Revolutionizing API Testing Workflows",
-      excerpt: "How I built a VS Code extension for Karate DSL that streamlines API testing workflows with features like bug tracking and JWT utilities.",
-      date: "2024-09-18",
-      readTime: "6 min read",
-      tags: ["API Testing", "VS Code", "Karate DSL"],
-      featured: false
-    }
-  ];
+  const [featuredPosts, setFeaturedPosts] = useState([]);
+  const [recentPosts, setRecentPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadBlogPosts = async () => {
+      setLoading(true);
+      try {
+        await BlogService.loadPosts();
+        
+        // Get featured posts (up to 3)
+        const featured = BlogService.getFeaturedPosts().slice(0, 1);
+        setFeaturedPosts(featured);
+        
+        // Get recent posts (up to 3, excluding featured)
+        const recent = BlogService.getRecentPosts(4)
+          .filter(post => !featured.some(fp => fp.slug === post.slug))
+          .slice(0, 2);
+        setRecentPosts(recent);
+        
+      } catch (error) {
+        console.error('Error loading blog posts:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadBlogPosts();
+  }, []);
 
   const highlights = [
     {
@@ -67,6 +67,21 @@ const BlogLanding = ({ userProfile, onNavigate }) => {
       onNavigate('projects');
     }
   };
+
+  const handleBlogPostClick = (slug) => {
+    if (onNavigate) {
+      onNavigate('blogPost', { slug });
+    }
+  };
+
+  const handleViewAllBlogsClick = () => {
+    if (onNavigate) {
+      onNavigate('blogList');
+    }
+  };
+
+  // Combine featured and recent posts for display
+  const allDisplayPosts = [...featuredPosts, ...recentPosts];
 
   return (
     <div className="blog-landing">
@@ -125,27 +140,55 @@ const BlogLanding = ({ userProfile, onNavigate }) => {
       {/* Featured Blog Posts */}
       <section className="blog-section">
         <h2 className="section-title">Latest Articles & Insights</h2>
-        <div className="blog-grid">
-          {featuredPosts.map((post) => (
-            <article key={post.id} className={`blog-card ${post.featured ? 'featured' : ''}`}>
-              {post.featured && <div className="featured-badge">Featured</div>}
-              <div className="blog-meta">
-                <span className="blog-date">{new Date(post.date).toLocaleDateString()}</span>
-                <span className="blog-read-time">{post.readTime}</span>
-              </div>
-              <h3 className="blog-title">{post.title}</h3>
-              <p className="blog-excerpt">{post.excerpt}</p>
-              <div className="blog-tags">
-                {post.tags.map((tag, index) => (
-                  <span key={index} className="blog-tag">{tag}</span>
-                ))}
-              </div>
-              <div className="blog-action">
-                <span className="read-more">Coming Soon →</span>
-              </div>
-            </article>
-          ))}
-        </div>
+        
+        {loading ? (
+          <div className="blog-loading">
+            <div className="loading-spinner"></div>
+            <p>Loading latest articles...</p>
+          </div>
+        ) : allDisplayPosts.length > 0 ? (
+          <>
+            <div className="blog-grid">
+              {allDisplayPosts.map((post) => (
+                <article 
+                  key={post.slug} 
+                  className={`blog-card ${post.data.featured ? 'featured' : ''}`}
+                  onClick={() => handleBlogPostClick(post.slug)}
+                >
+                  {post.data.featured && <div className="featured-badge">Featured</div>}
+                  <div className="blog-meta">
+                    <span className="blog-date">
+                      {new Date(post.data.date).toLocaleDateString()}
+                    </span>
+                    <span className="blog-read-time">{post.data.readTime}</span>
+                  </div>
+                  <h3 className="blog-title">{post.data.title}</h3>
+                  <p className="blog-excerpt">{post.data.excerpt}</p>
+                  <div className="blog-tags">
+                    {post.data.tags.slice(0, 3).map((tag, index) => (
+                      <span key={index} className="blog-tag">{tag}</span>
+                    ))}
+                  </div>
+                  <div className="blog-action">
+                    <span className="read-more">Read More →</span>
+                  </div>
+                </article>
+              ))}
+            </div>
+            
+            {/* View All Blogs Button */}
+            <div className="view-all-blogs">
+              <button className="view-all-btn" onClick={handleViewAllBlogsClick}>
+                View All Articles
+              </button>
+            </div>
+          </>
+        ) : (
+          <div className="no-posts-message">
+            <h3>Coming Soon!</h3>
+            <p>I'm working on some exciting articles about AI testing, automation frameworks, and enterprise development. Check back soon!</p>
+          </div>
+        )}
       </section>
 
       {/* Call to Action */}

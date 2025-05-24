@@ -16,6 +16,7 @@ function App() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [sectionParams, setSectionParams] = useState(null); // Add state for section parameters
 
   const [isHeaderExpanded, setIsHeaderExpanded] = useState(true); // Start with header expanded
 
@@ -27,7 +28,7 @@ function App() {
       const response = await axios.get(`${GITHUB_API_BASE_URL}/users/${GITHUB_USERNAME}`);
       setUserProfile({
         name: response.data.name || response.data.login,
-        avatarUrl: response.data.avatar_url,
+        avatarUrl: '/data/profile_photo.jpg', // Always use local profile photo
         bio: response.data.bio,
         githubUrl: response.data.html_url,
         // Add other profile details as needed
@@ -65,12 +66,15 @@ function App() {
       .finally(() => setIsLoading(false));
   }, [fetchGitHubProfile, fetchGitHubRepos]);
 
-  const handleSectionSelect = (section) => {
+  const handleSectionSelect = (section, params = null) => {
     setSelectedProject(null); // Clear selected project when changing main sections
-    if (activeSection === section && !isHeaderExpanded) {
+    setSectionParams(params); // Set section parameters
+    
+    if (activeSection === section && !isHeaderExpanded && !params) {
       // If clicking the same section button and content is shown, hide content & expand header
       setIsHeaderExpanded(true);
       setActiveSection(null);
+      setSectionParams(null);
     } else {
       setActiveSection(section);
       setIsHeaderExpanded(false); // Collapse header to show content
@@ -81,12 +85,14 @@ function App() {
     setSelectedProject(project);
     setActiveSection('projectDetail'); // Special section for project details
     setIsHeaderExpanded(false); // Ensure header is collapsed
+    setSectionParams(null); // Clear section params
   };
 
   const handleCloseContent = () => {
     setActiveSection(null);
     setSelectedProject(null);
     setIsHeaderExpanded(true); // Expand header
+    setSectionParams(null); // Clear section params
   };
 
   if (isLoading) {
@@ -123,6 +129,7 @@ function App() {
         isHeaderExpanded={isHeaderExpanded}
         userProfile={userProfile} // Pass userProfile for blog landing
         onSectionSelect={handleSectionSelect} // Pass section navigation function
+        sectionParams={sectionParams} // Pass section parameters
       />
       {error && <div className="error-message">{error}</div>}
     </div>
