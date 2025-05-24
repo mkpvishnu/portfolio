@@ -1,0 +1,91 @@
+.projects-list-section {
+  /* Inherits .content-section styles if wrapped by it, or define similar here */
+  background-color: #fff; /* Assuming it's a direct child in ContentDisplay with its own bg */
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+  animation: sectionFadeIn 0.6s ease-out forwards; /* Reuse animation */
+  opacity: 0;
+}
+
+.projects-list-section h2 {
+  font-size: 2em;
+  color: #34495e;
+  margin-top: 0;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+.project-tiles-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.project-tile {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  padding: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distributes space for content and meta */
+}
+
+.project-tile:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.project-tile h3 {
+  font-size: 1.3em;
+  color: #007bff;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.project-description {
+  font-size: 0.9em;
+  color: #495057;
+  flex-grow: 1; /* Allows description to take available space */
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.project-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8em;
+  color: #6c757d;
+  border-top: 1px solid #dee2e6;
+  padding-top: 10px;
+  margin-top: auto; /* Pushes meta to the bottom if tile height varies */
+}
+
+.project-language {
+  font-weight: 500;
+}
+
+.project-stars {
+  /* Style for stars */
+}
+
+.no-projects-message {
+    text-align: center;
+    font-size: 1.1em;
+    color: #6c757d;
+    padding: 30px;
+}
+
+/* .project-icon - if you add icons to tiles
+.project-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+} */ 

@@ -1,0 +1,86 @@
+{
+  "education": [
+    { 
+      "degree": "M.Tech ML Applications in Signal Processing", 
+      "institution": "Vellore Institute of Technology", 
+      "period": "2020-2022", 
+      "details": "Specialized in Data Analytics and Machine Learning for Signal Processing and Communciation Systems" 
+    },
+    { 
+      "degree": "B.Tech Electronics and Communication", 
+      "institution": "Anna University", 
+      "period": "2015-2019", 
+      "details": "Focused on Electronics and Communication Engineering" 
+    }
+  ],
+  "experience": [
+    {
+      "title": "Software Development Engineer in Test",
+      "company": "Freshworks",
+      "companyId": "freshworks",
+      "overallPeriod": { "start": "2022-06", "end": "Present" },
+      "projects": [
+        {
+          "projectName": "Agentic Framework Services",
+          "projectPeriod": { "start": "2024-12", "end": "2025-02" },
+          "details": [
+            "End-to-end testing for next-generation agentic framework services.",
+            "Designed and implemented a mock server to simulate real customer interactions.",
+            "Conducted comprehensive accuracy and load testing to determine optimal concurrency parameters.",
+            "Validated seamless integration between API execution services."
+          ]
+        },
+        {
+          "projectName": "Enterprise AI Platform Engineering",
+          "projectPeriod": { "start": "2024-07", "end": "2025-02" },
+          "details": [
+            "Comprehensive testing of the company-wide AI backbone platform supporting millions of customer interactions.",
+            "Coordinated cross-team integration testing with 7+ product teams and 20+ engineers."
+          ]
+        },
+        {
+          "projectName": "Machine Learning Operations and Systems",
+          "projectPeriod": { "start": "2024-01", "end": "2024-05" },
+          "details": [
+            "End-to-end testing for ML pipelines, significantly reducing production incidents.",
+            "Deployed OpenSearch in AWS environment and handled index creations and maintenance.",
+            "Tested FAQ ingestion processes across the enterprise in Elastic Search and later OpenSearch.",
+            "Developed automated testing protocols for ingestion processes handling millions of documents."
+          ]
+        },
+        {
+          "projectName": "AI Testing Framework",
+          "projectPeriod": { "start": "2023-10", "end": "2025-05" },
+          "details": [
+            "Architected and developed a comprehensive AI testing framework using FastAPI.",
+            "Built a quality metrics system incorporating BLEU, ROUGE, recall, and F1 scores.",
+            "Developed and fine-tuned in-house models for sentiment analysis and language detection.",
+            "Created a modular architecture allowing for 5-minute integration into any product.",
+            "Designed intuitive documentation and UI using MkDocs."
+          ]
+        },
+        {
+          "projectName": "Triage Operations using Machine Learning",
+          "projectPeriod": { "start": "2023-01", "end": "2024-03" },
+          "details": [
+            "Tested auto-classification system for customer support tickets, improving routing accuracy.",
+            "Developed a validation framework for ML prediction models, establishing quality gates for production deployment.",
+            "Conducted end-to-end testing for the entire triage process."
+          ]
+        },
+        {
+          "projectName": "Microservices and API Testing",
+          "projectPeriod": { "start": "2022-06", "end": "Present" },
+          "details": [
+            "End-to-end testing of microservices serving multiple products via REST APIs."
+          ]
+        }
+      ]
+    }
+  ],
+  "contact": {
+    "email": "mkpvishnu@example.com",
+    "linkedin": "https://www.linkedin.com/in/mkpvishnu/",
+    "github": "https://github.com/mkpvishnu"
+  }
+} 

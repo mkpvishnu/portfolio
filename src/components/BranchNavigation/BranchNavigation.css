@@ -1,0 +1,107 @@
+.branch-navigation {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically when header is collapsed */
+  align-items: center;
+  justify-content: center;
+  position: absolute; /* Position relative to header */
+  width: 100%;
+  bottom: 40px; /* Adjust as needed, or center it */
+  left: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInButtons 0.5s forwards;
+}
+
+.branch-navigation.header-expanded {
+  /* When header is expanded, buttons might arrange around photo */
+  /* This example keeps them simple and below for now */
+  position: relative; /* Part of the flow */
+  bottom: auto; 
+  left: auto;
+  margin-top: 20px;
+  flex-direction: column; /* Or 'row' if you want them side-by-side */
+  gap: 10px;
+}
+
+.branch-navigation.header-collapsed {
+  /* When header is collapsed, buttons are crucial for navigation */
+  /* Ensure they are clearly visible and accessible */
+  bottom: 20px; /* Position them well within the small header */
+  left: 50%;
+  transform: translateX(-50%); 
+  width: auto;
+}
+
+@keyframes fadeInButtons {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.branch-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 5px 0; /* Spacing for vertical stack */
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  min-width: 120px; /* Ensure buttons have a decent width */
+  text-align: center;
+}
+
+.branch-navigation.header-expanded .branch-button {
+   background-color: rgba(0, 123, 255, 0.15); /* More subtle when header is expanded */
+   color: #007bff;
+}
+
+.branch-navigation.header-collapsed .branch-button {
+  /* Buttons are more prominent when header is collapsed */
+  padding: 8px 10px;
+  font-size: 0.8em;
+  min-width: auto;
+  width: 80%; /* Fit within the collapsed header */
+  max-width: 100px;
+}
+
+
+.branch-button:hover {
+  background-color: #0056b3;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Example for radial positioning if you want to pursue that with JS later */
+/* .branch-button-0 { transform: rotate(-45deg) translateX(120px) rotate(45deg); } */
+/* .branch-button-1 { transform: rotate(45deg) translateX(120px) rotate(-45deg); } */
+/* ... etc. */
+
+@media (max-width: 768px) {
+  .branch-navigation,
+  .branch-navigation.header-expanded,
+  .branch-navigation.header-collapsed {
+    position: relative; /* Part of flow on mobile */
+    flex-direction: row; /* Horizontal on mobile */
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: center;
+    gap: 10px;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    margin-top: 15px;
+    width: 100%;
+  }
+
+  .branch-button,
+  .branch-navigation.header-collapsed .branch-button {
+    width: auto;
+    min-width: 100px;
+    font-size: 0.85em;
+    padding: 8px 12px;
+  }
+} 

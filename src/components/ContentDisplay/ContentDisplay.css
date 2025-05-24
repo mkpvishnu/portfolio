@@ -1,0 +1,139 @@
+.content-display {
+  flex-grow: 1;
+  padding: 40px;
+  padding-left: calc(350px + 40px); /* Initial padding left to account for expanded header */
+  background-color: #f0f2f5; /* Match body background or choose a content area bg */
+  overflow-y: auto;
+  transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1), 
+              opacity 0.5s cubic-bezier(0.77, 0, 0.175, 1),
+              padding-left 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  position: relative; /* For back button positioning */
+}
+
+.content-display.header-collapsed {
+  padding-left: calc(100px + 40px); /* Adjust padding when header is collapsed */
+}
+
+.content-display.anmt-hide {
+  transform: translateX(100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.content-display.anmt-show {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.content-section {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+  animation: sectionFadeIn 0.6s ease-out forwards;
+  opacity: 0; /* Start hidden for animation */
+}
+
+@keyframes sectionFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.content-section h2 {
+  font-size: 2em;
+  color: #34495e;
+  margin-top: 0;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+.education-item, .experience-item {
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.education-item:last-child, .experience-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.education-item h3, .experience-item h3 {
+  font-size: 1.4em;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.institution-period, .period {
+  font-size: 0.9em;
+  color: #7f8c8d;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.contact-section p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+.contact-section a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.contact-section a:hover {
+    text-decoration: underline;
+}
+
+.back-button {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.back-button:hover {
+  background-color: #545b62;
+}
+
+.main-back-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #007bff;
+}
+.main-back-button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive adjustments for content area */
+@media (max-width: 768px) {
+  .content-display,
+  .content-display.header-collapsed {
+    padding: 20px; /* Simpler padding on mobile */
+  }
+
+  .content-section h2 {
+    font-size: 1.8em;
+  }
+
+  .education-item h3, .experience-item h3 {
+    font-size: 1.3em;
+  }
+  .main-back-button {
+    top: 10px;
+    right: 10px;
+    padding: 8px 15px;
+  }
+} 

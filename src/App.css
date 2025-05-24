@@ -1,0 +1,31 @@
+.App {
+  display: flex;
+  min-height: 100vh;
+  overflow-x: hidden; /* Prevent horizontal scrollbars during transitions */
+  position: relative;
+}
+
+/* When content is visible, the App container might need adjustment if header shrinks significantly */
+.App.content-visible {
+  /* Adjust as needed based on Header's collapsed state */
+}
+
+.error-message {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ff4d4f;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+/* Responsive adjustments can be added here */
+@media (max-width: 768px) {
+  .App {
+    flex-direction: column;
+  }
+} 
