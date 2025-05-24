@@ -18,14 +18,14 @@ body {
 }
 
 header {
-    flex: 0 0 300px; /* Fixed width for the photo/nav area */
+    flex: 0 0 300px; /* Initial fixed width */
     text-align: center;
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     margin-right: 20px;
-    position: relative; /* For positioning branches */
-    transition: transform 0.5s ease-in-out, min-width 0.5s ease-in-out, padding 0.5s ease-in-out; /* Added for slide */
+    position: relative; 
+    transition: transform 0.5s ease-in-out, min-width 0.5s ease-in-out, padding 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Added opacity */
     z-index: 10;
 }
 
@@ -39,8 +39,9 @@ header {
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 10px; /* Adjusted margin */
-    transition: transform 0.5s ease-in-out; /* For shrinking/moving photo */
+    margin-bottom: 10px; 
+    transition: transform 0.5s ease-in-out, opacity 0.3s ease-in-out; /* Added opacity transition */
+    cursor: pointer; /* Indicate it's clickable to close sections */
 }
 
 #profileName {
@@ -125,46 +126,57 @@ header {
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    transform: translateX(100%); /* Initially off-screen to the right */
-    transition: transform 0.5s ease-in-out;
-    min-width: 0; /* Allow it to shrink */
-    opacity: 0; /* Start as transparent for slide-in */
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    min-width: 0; 
 }
 
-/* State when a section is active and content area should be visible */
-header.photo-slid + #contentArea.section-active {
+#contentArea.content-hidden {
+    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none; /* Prevent interaction when hidden */
+}
+
+#contentArea.content-visible {
     transform: translateX(0);
     opacity: 1;
 }
 
-/* Styles for when the photo section slides left */
-header.photo-slid {
-    transform: translateX(-60%); /* Slide photo partially off-screen or to a smaller sidebar */
-    min-width: 120px; /* Example: shrink header width */
-    padding: 10px;
+header.photo-slid-left {
+    transform: translateX(-80%); 
+    min-width: 60px; 
+    padding: 10px 5px;
+    opacity: 0.7; 
 }
-header.photo-slid .photo-container img {
-    transform: scale(0.6); /* Shrink photo */
+
+header.photo-slid-left .photo-container img {
+    transform: scale(0.4) translateX(-50%); 
+    opacity: 0.5;
 }
-header.photo-slid #profileName,
-header.photo-slid #profileTagline {
-    opacity: 0; /* Hide name and tagline when slid */
+
+header.photo-slid-left #profileName,
+header.photo-slid-left #profileTagline {
+    opacity: 0; 
     height: 0;
     margin: 0;
     overflow: hidden;
+    transition: opacity 0.2s ease-out, height 0s 0.2s, margin 0s 0.2s; 
 }
-header.photo-slid .branches {
-    opacity: 0; /* Hide branches when photo is slid */
+
+header.photo-slid-left .branches {
+    opacity: 0; 
     visibility: hidden;
 }
 
+#contentArea.content-slid-left {
+    transform: translateX(-100%); 
+    opacity: 0;
+}
 
 .content-section {
     display: none; 
     padding: 20px;
-    border-bottom: 1px solid #eee;
-    opacity: 0; /* Handled by #contentArea.section-active now for initial load*/
-    transition: opacity 0.5s 0.3s ease-in-out; /* Delay opacity for content to appear after slide */
+    opacity: 0; 
+    transition: opacity 0.4s 0.2s ease-in-out; 
 }
 
 .content-section:last-child {
