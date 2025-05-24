@@ -303,54 +303,365 @@
   color: #6c757d;
 }
 
-/* Responsive Design */
+/* Enhanced Mobile Responsive Design */
 @media (max-width: 768px) {
   .blog-post-container {
-    padding: 20px 15px;
+    padding: 15px; /* Reduced padding for mobile */
+    margin-left: 0; /* Remove left margin on mobile */
+  }
+
+  .back-button {
+    padding: 12px 20px;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    /* Enhanced touch target */
+    min-height: 44px;
+    touch-action: manipulation;
+    /* Better mobile styling */
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  }
+
+  .back-button:hover,
+  .back-button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  }
+
+  .post-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 0 10px;
   }
 
   .post-title {
-    font-size: 2em;
-  }
-
-  .post-excerpt {
-    font-size: 1.1em;
-  }
-
-  .blog-post-content {
-    font-size: 1em;
-  }
-
-  .blog-post-content h1 {
-    font-size: 1.8em;
-  }
-
-  .blog-post-content h2 {
-    font-size: 1.5em;
-  }
-
-  .blog-post-content h3 {
-    font-size: 1.3em;
+    font-size: 2em; /* Better mobile sizing */
+    line-height: 1.2;
+    margin-bottom: 15px;
+    color: #2c3e50;
+    /* Better text rendering */
+    text-rendering: optimizeLegibility;
   }
 
   .post-meta {
-    flex-direction: column;
-    align-items: flex-start;
+    font-size: 0.85em;
+    color: #6c757d;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
     gap: 10px;
+    justify-content: center;
   }
 
-  .post-author {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
+  .post-tags {
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 0;
+  }
+
+  .post-tag {
+    font-size: 0.75em;
+    padding: 6px 12px;
+    /* Enhanced touch targets */
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    touch-action: manipulation;
+    cursor: pointer;
+  }
+
+  .post-tag:active {
+    transform: scale(0.95);
+  }
+
+  /* Enhanced Content Readability */
+  .post-content {
+    max-width: 100%;
+    padding: 0 5px;
+    /* Improved typography for mobile reading */
+    font-size: 1.05em;
+    line-height: 1.7;
+    color: #333;
+  }
+
+  .post-content h1,
+  .post-content h2,
+  .post-content h3,
+  .post-content h4,
+  .post-content h5,
+  .post-content h6 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    line-height: 1.3;
+    /* Better mobile heading sizes */
+  }
+
+  .post-content h1 { font-size: 1.8em; }
+  .post-content h2 { font-size: 1.6em; }
+  .post-content h3 { font-size: 1.4em; }
+  .post-content h4 { font-size: 1.2em; }
+  .post-content h5 { font-size: 1.1em; }
+  .post-content h6 { font-size: 1em; }
+
+  .post-content p {
+    margin-bottom: 18px;
+    /* Better paragraph spacing for mobile */
+    text-align: left;
+  }
+
+  .post-content ul,
+  .post-content ol {
+    margin-bottom: 18px;
+    padding-left: 20px; /* Reduced indentation for mobile */
+  }
+
+  .post-content li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+  }
+
+  .post-content blockquote {
+    margin: 20px 0;
+    padding: 15px 20px;
+    border-left: 4px solid #667eea;
+    background: #f8f9ff;
+    font-style: italic;
+    border-radius: 0 8px 8px 0;
+  }
+
+  /* Enhanced Code Blocks for Mobile */
+  .post-content pre {
+    margin: 20px 0;
+    padding: 15px;
+    background: #2d3748;
+    color: #e2e8f0;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 0.85em;
+    line-height: 1.5;
+    /* Better mobile scrolling */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .post-content code {
+    font-size: 0.9em;
+    padding: 2px 6px;
+    background: #f1f3f4;
+    border-radius: 4px;
+    color: #d63384;
+    /* Prevent code from breaking layout */
+    word-break: break-word;
+  }
+
+  .post-content pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+    word-break: normal;
+  }
+
+  /* Enhanced Images for Mobile */
+  .post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 20px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    /* Better loading experience */
+    background: #f8f9fa;
+  }
+
+  /* Enhanced Tables for Mobile */
+  .post-content table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    /* Make tables horizontally scrollable on mobile */
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .post-content th,
+  .post-content td {
+    padding: 10px 8px;
+    border: 1px solid #dee2e6;
+    text-align: left;
+  }
+
+  .post-content th {
+    background: #f8f9fa;
+    font-weight: 600;
+  }
+
+  /* Enhanced Related Posts Section */
+  .related-posts {
+    margin-top: 40px;
+    padding: 20px 15px;
+    background: #f8f9ff;
+    border-radius: 12px;
+  }
+
+  .related-posts h3 {
+    font-size: 1.4em;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #2c3e50;
   }
 
   .related-posts-grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column; /* Stack vertically on mobile */
+    gap: 15px;
   }
 
-  .blog-post-content pre {
+  .related-post-card {
+    background: white;
     padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    /* Enhanced touch interaction */
+    touch-action: manipulation;
+  }
+
+  .related-post-card:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .related-post-title {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    line-height: 1.3;
+    color: #2c3e50;
+  }
+
+  .related-post-meta {
+    font-size: 0.8em;
+    color: #6c757d;
+    margin-bottom: 10px;
+  }
+
+  .related-post-excerpt {
+    font-size: 0.9em;
+    line-height: 1.5;
+    color: #555;
+    /* Limit excerpt length on mobile */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Extra Small Mobile Devices */
+@media (max-width: 480px) {
+  .blog-post-container {
+    padding: 10px;
+  }
+
+  .back-button {
+    padding: 10px 16px;
     font-size: 0.85em;
+    margin-bottom: 15px;
+  }
+
+  .post-title {
+    font-size: 1.7em;
+    margin-bottom: 12px;
+  }
+
+  .post-meta {
+    font-size: 0.8em;
+    margin-bottom: 15px;
+  }
+
+  .post-content {
+    font-size: 1em;
+    padding: 0;
+  }
+
+  .post-content h1 { font-size: 1.6em; }
+  .post-content h2 { font-size: 1.4em; }
+  .post-content h3 { font-size: 1.2em; }
+  
+  .post-content pre {
+    padding: 12px;
+    font-size: 0.8em;
+    margin: 15px -10px; /* Extend to edges on very small screens */
+    border-radius: 0;
+  }
+
+  .related-posts {
+    margin-top: 30px;
+    padding: 15px 10px;
+  }
+
+  .related-posts h3 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+  }
+
+  .related-post-card {
+    padding: 12px;
+  }
+}
+
+/* Landscape Mobile Optimization */
+@media (max-width: 768px) and (orientation: landscape) {
+  .blog-post-container {
+    padding: 15px 25px;
+  }
+
+  .post-content {
+    font-size: 1em;
+    line-height: 1.6;
+  }
+
+  .related-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+}
+
+/* Touch and Accessibility Improvements */
+@media (max-width: 768px) {
+  /* Improve focus visibility */
+  .back-button:focus,
+  .post-tag:focus,
+  .related-post-card:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+  }
+
+  /* Better tap highlighting */
+  .back-button,
+  .post-tag,
+  .related-post-card {
+    -webkit-tap-highlight-color: rgba(102, 126, 234, 0.2);
+  }
+
+  /* Prevent text selection on interactive elements */
+  .back-button,
+  .post-tag,
+  .related-post-card {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Ensure proper text selection for content */
+  .post-content {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
   }
 } 

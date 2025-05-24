@@ -23,9 +23,84 @@
   z-index: 1000;
 }
 
-/* Responsive adjustments can be added here */
+/* Enhanced Mobile Layout */
 @media (max-width: 768px) {
   .App {
     flex-direction: column;
+    min-height: 100vh;
+    /* Ensure proper viewport handling */
+    min-height: -webkit-fill-available;
+  }
+
+  .App.content-visible {
+    /* Better handling of content state on mobile */
+    overflow-y: auto;
+  }
+
+  /* Enhanced error message for mobile */
+  .error-message {
+    bottom: 80px; /* Account for mobile navigation */
+    padding: 12px 20px;
+    margin: 0 15px;
+    width: calc(100% - 30px);
+    max-width: 400px;
+    font-size: 0.9em;
+    border-radius: 8px;
+    /* Better touch-friendly styling */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    backdrop-filter: blur(10px);
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  .error-message {
+    bottom: 70px;
+    padding: 10px 16px;
+    margin: 0 10px;
+    font-size: 0.85em;
+  }
+}
+
+/* Global mobile optimizations */
+@media (max-width: 768px) {
+  /* Improve touch scrolling performance */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Better text rendering on mobile */
+  body {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+
+  /* Prevent horizontal scrolling issues */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  /* Improve form elements on mobile */
+  input, textarea, select, button {
+    /* Prevent zoom on focus in iOS */
+    font-size: 16px;
+  }
+}
+
+/* Handle safe areas for modern mobile devices */
+@supports (padding: max(0px)) {
+  @media (max-width: 768px) {
+    .App {
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+    
+    .error-message {
+      bottom: calc(20px + env(safe-area-inset-bottom));
+      margin-left: calc(15px + env(safe-area-inset-left));
+      margin-right: calc(15px + env(safe-area-inset-right));
+      width: calc(100% - 30px - env(safe-area-inset-left) - env(safe-area-inset-right));
+    }
   }
 } 

@@ -76,37 +76,132 @@
 /* Styles for BranchNavigation will be in its own CSS but ensure it integrates here */
 /* The BranchNavigation component itself will handle its visibility based on props */
 
+/* Enhanced Mobile Experience - Header */
 @media (max-width: 768px) {
   .portfolio-header {
-    position: relative; /* Becomes part of page flow */
+    position: sticky; /* Changed from relative for better scrolling */
+    top: 0;
     width: 100%;
     height: auto;
-    padding: 20px;
+    padding: 15px 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(10px); /* Modern glassmorphism effect */
+    background-color: rgba(255, 255, 255, 0.95);
+    z-index: 1000; /* Higher z-index for mobile */
   }
 
   .portfolio-header.collapsed {
-    width: 100%; /* No separate collapsed width on mobile */
-    padding: 15px;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.98);
+  }
+
+  .profile-intro {
+    flex-direction: row; /* Horizontal layout on mobile when collapsed */
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .portfolio-header.collapsed .profile-intro {
+    justify-content: flex-start;
+    gap: 15px;
   }
 
   .profile-photo {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 15px;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 0; /* Remove bottom margin on mobile */
+    margin-right: 15px;
+    /* Enhanced touch target */
+    min-width: 44px;
+    min-height: 44px;
+    touch-action: manipulation; /* Prevent zoom on tap */
   }
   
   .portfolio-header.collapsed .profile-photo {
-    width: 80px; /* Slightly smaller when content shown on mobile */
-    height: 80px;
+    width: 45px;
+    height: 45px;
+    margin-right: 10px;
+    border-width: 2px;
   }
 
   .portfolio-header h1 {
-    font-size: 1.8em;
+    font-size: 1.4em;
+    margin-bottom: 5px;
+    text-align: left;
   }
 
   .portfolio-header .tagline {
-    font-size: 0.9em;
-    margin-bottom: 20px;
+    font-size: 0.8em;
+    margin-bottom: 0;
+    text-align: left;
+    max-width: none;
+  }
+
+  /* Show title and tagline even when collapsed on mobile */
+  .portfolio-header.collapsed h1,
+  .portfolio-header.collapsed .tagline {
+    opacity: 1;
+    height: auto;
+    font-size: 1.2em; /* Smaller but visible */
+    margin: 0;
+  }
+
+  .portfolio-header.collapsed .tagline {
+    font-size: 0.75em;
+  }
+
+  /* Mobile menu toggle visual indicator */
+  .portfolio-header::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 2px;
+    opacity: 0.6;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  .portfolio-header {
+    padding: 12px 15px;
+  }
+
+  .portfolio-header.collapsed {
+    padding: 8px 15px;
+  }
+
+  .profile-photo {
+    width: 70px;
+    height: 70px;
+    margin-right: 12px;
+  }
+
+  .portfolio-header.collapsed .profile-photo {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+  }
+
+  .portfolio-header h1 {
+    font-size: 1.2em;
+  }
+
+  .portfolio-header .tagline {
+    font-size: 0.75em;
+  }
+
+  .portfolio-header.collapsed h1 {
+    font-size: 1em;
+  }
+
+  .portfolio-header.collapsed .tagline {
+    font-size: 0.7em;
   }
 } 

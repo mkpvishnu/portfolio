@@ -197,44 +197,299 @@
     font-weight: bold;
 }
 
-/* Responsive adjustments for content area */
+/* Enhanced Responsive Design for Mobile */
 @media (max-width: 768px) {
   .content-display,
   .content-display.header-collapsed,
   .content-display.blog-landing-container,
   .content-display.blog-landing-container.header-collapsed {
-    padding: 20px;
-    padding-top: 80px; /* Account for fixed back button */
-    padding-left: 20px; /* Simplified for mobile */
+    padding: 15px;
+    padding-top: 20px; /* Reduced top padding for mobile */
+    padding-left: 15px;
+    /* Better mobile scrolling */
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+  }
+
+  /* When header is present on mobile, add more top padding */
+  .content-display.has-mobile-header {
+    padding-top: 120px; /* Account for mobile header height */
   }
 
   .content-section {
-    padding: 20px;
-    margin-top: 10px;
+    padding: 20px 15px;
+    margin-top: 0;
+    border-radius: 10px;
+    /* Enhanced touch experience */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
   }
 
   .content-section h2 {
-    font-size: 1.8em;
+    font-size: 1.6em;
     margin-bottom: 20px;
+    line-height: 1.3;
+    /* Better mobile typography */
+    text-rendering: optimizeLegibility;
   }
 
-  .education-item h3, .experience-item h3 {
-    font-size: 1.3em;
+  .content-section h2::after {
+    width: 40px;
+    height: 2px;
   }
-  
+
+  /* Enhanced Education and Experience Items */
+  .education-item,
+  .experience-item {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    /* Better mobile spacing */
+  }
+
+  .education-item h3,
+  .experience-item h3 {
+    font-size: 1.2em;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+
+  .institution-period,
+  .period {
+    font-size: 0.85em;
+    margin-bottom: 12px;
+  }
+
+  /* Enhanced Contact Grid for Mobile */
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 15px;
+    margin-top: 20px;
   }
   
   .contact-item {
-    padding: 25px 15px;
+    padding: 20px 15px;
+    border-radius: 12px;
+    /* Enhanced touch targets */
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    touch-action: manipulation;
+  }
+
+  .contact-item:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+
+  .contact-icon {
+    font-size: 2.2em;
+    margin-bottom: 12px;
+  }
+
+  .contact-item h3 {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+  }
+
+  .contact-item a {
+    font-size: 1em;
+    /* Better touch targets */
+    padding: 5px;
+    border-radius: 5px;
+    -webkit-tap-highlight-color: rgba(0, 123, 255, 0.2);
+  }
+  
+  /* Enhanced Back Button for Mobile */
+  .back-button {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 25px;
+    font-size: 0.85em;
+    margin-bottom: 20px;
+    /* Enhanced touch targets */
+    min-height: 44px;
+    touch-action: manipulation;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  }
+
+  .back-button:hover,
+  .back-button:active {
+    background: linear-gradient(45deg, #5a6fd8, #6a4190);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
   }
   
   .main-back-button {
-    top: 15px;
+    position: fixed;
+    top: 75px; /* Position below mobile header */
     right: 15px;
-    padding: 8px 12px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    z-index: 999;
     font-size: 0.8em;
+    padding: 10px 14px;
+    border-radius: 20px;
+    /* Enhanced mobile styling */
+    min-height: 40px;
+    min-width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  }
+
+  .main-back-button:hover,
+  .main-back-button:active {
+    background: linear-gradient(45deg, #5a6fd8, #6a4190);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  }
+
+  .main-back-button::before {
+    content: '✕';
+    margin-right: 0; /* Center the X */
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+}
+
+/* Extra Small Mobile Devices */
+@media (max-width: 480px) {
+  .content-display,
+  .content-display.header-collapsed,
+  .content-display.blog-landing-container,
+  .content-display.blog-landing-container.header-collapsed {
+    padding: 10px;
+    padding-top: 15px;
+  }
+
+  .content-display.has-mobile-header {
+    padding-top: 110px;
+  }
+
+  .content-section {
+    padding: 15px 10px;
+    border-radius: 8px;
+  }
+
+  .content-section h2 {
+    font-size: 1.4em;
+    margin-bottom: 15px;
+  }
+
+  .education-item h3,
+  .experience-item h3 {
+    font-size: 1.1em;
+  }
+
+  .contact-item {
+    padding: 15px 10px;
+    min-height: 100px;
+  }
+
+  .contact-icon {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+
+  .back-button {
+    padding: 10px 15px;
+    font-size: 0.8em;
+    margin-bottom: 15px;
+  }
+
+  .main-back-button {
+    top: 70px;
+    right: 10px;
+    padding: 8px 10px;
+    font-size: 0.75em;
+    min-height: 36px;
+    min-width: 36px;
+  }
+}
+
+/* Landscape Mobile Optimization */
+@media (max-width: 768px) and (orientation: landscape) {
+  .content-display {
+    padding-top: 10px;
+  }
+
+  .content-display.has-mobile-header {
+    padding-top: 90px; /* Reduced for landscape */
+  }
+
+  .content-section {
+    padding: 15px 20px;
+  }
+
+  .content-section h2 {
+    font-size: 1.5em;
+    margin-bottom: 18px;
+  }
+
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .contact-item {
+    padding: 15px 12px;
+    min-height: 90px;
+  }
+
+  .main-back-button {
+    top: 55px;
+    padding: 8px 12px;
+  }
+}
+
+/* Touch and Accessibility Improvements */
+@media (max-width: 768px) {
+  /* Improve focus visibility */
+  .back-button:focus,
+  .main-back-button:focus,
+  .contact-item:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+  }
+
+  /* Better tap highlighting */
+  .back-button,
+  .main-back-button,
+  .contact-item,
+  .contact-item a {
+    -webkit-tap-highlight-color: rgba(102, 126, 234, 0.2);
+  }
+
+  /* Prevent text selection on interactive elements */
+  .back-button,
+  .main-back-button,
+  .contact-item {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Ensure proper scrolling behavior */
+  .content-display {
+    scroll-behavior: smooth;
+  }
+
+  /* Better performance for animations on mobile */
+  .content-section,
+  .back-button,
+  .main-back-button,
+  .contact-item {
+    will-change: transform;
+  }
+
+  /* Improve text readability */
+  .content-section {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 } 
