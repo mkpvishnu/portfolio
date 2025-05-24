@@ -14,6 +14,7 @@ body {
     display: flex;
     max-width: 1200px;
     width: 100%;
+    overflow: hidden; /* Important for sliding animations */
 }
 
 header {
@@ -23,7 +24,14 @@ header {
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     margin-right: 20px;
-    position: relative; /* For positioning branches if we go that route */
+    position: relative; /* For positioning branches */
+    transition: transform 0.5s ease-in-out, min-width 0.5s ease-in-out, padding 0.5s ease-in-out; /* Added for slide */
+    z-index: 10;
+}
+
+.photo-container {
+    position: relative; /* To position nav buttons relative to the photo */
+    display: inline-block; /* To wrap tightly around the image */
 }
 
 .photo-container img {
@@ -32,47 +40,131 @@ header {
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 10px; /* Adjusted margin */
+    transition: transform 0.5s ease-in-out; /* For shrinking/moving photo */
 }
 
 #profileName {
     font-size: 1.5em;
     margin-bottom: 5px;
+    transition: opacity 0.3s ease-in-out;
 }
 
 #profileTagline {
     font-size: 0.9em;
     color: #555;
     margin-bottom: 20px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.branches {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 220px; /* Increased size to better accommodate buttons */
+    height: 220px; /* Increased size */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    pointer-events: none; /* Initially not interactive */
+}
+
+.photo-container:hover .branches {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto; /* Make buttons clickable when visible */
 }
 
 .branches button {
     display: block;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #007bff;
+    width: auto; 
+    padding: 8px 12px; /* Slightly smaller padding */
+    background-color: rgba(0, 123, 255, 0.85); 
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px; 
     cursor: pointer;
-    font-size: 1em;
+    font-size: 0.85em; /* Slightly smaller font */
+    position: absolute; 
+    transition: transform 0.3s ease-out, background-color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .branches button:hover {
-    background-color: #0056b3;
+    background-color: rgba(0, 86, 179, 0.95);
+    transform: scale(1.1);
 }
 
+.branches button[data-section="education"] {
+    top: 0px; 
+    left: 50%;
+    transform: translateX(-50%) translateY(-100%); 
+}
+
+.branches button[data-section="experience"] {
+    top: 50%;
+    right: 0px;
+    transform: translateY(-50%) translateX(100%);
+}
+
+.branches button[data-section="projects"] {
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+}
+
+.branches button[data-section="contact"] {
+    top: 50%;
+    left: 0px;
+    transform: translateY(-50%) translateX(-100%);
+}
+
+
 #contentArea {
-    flex-grow: 1; /* Allows this area to take up remaining space */
+    flex-grow: 1; 
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    transform: translateX(100%); /* Initially off-screen to the right */
+    transition: transform 0.5s ease-in-out;
+    min-width: 0; /* Allow it to shrink */
+    opacity: 0; /* Start as transparent for slide-in */
 }
 
+/* State when a section is active and content area should be visible */
+header.photo-slid + #contentArea.section-active {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* Styles for when the photo section slides left */
+header.photo-slid {
+    transform: translateX(-60%); /* Slide photo partially off-screen or to a smaller sidebar */
+    min-width: 120px; /* Example: shrink header width */
+    padding: 10px;
+}
+header.photo-slid .photo-container img {
+    transform: scale(0.6); /* Shrink photo */
+}
+header.photo-slid #profileName,
+header.photo-slid #profileTagline {
+    opacity: 0; /* Hide name and tagline when slid */
+    height: 0;
+    margin: 0;
+    overflow: hidden;
+}
+header.photo-slid .branches {
+    opacity: 0; /* Hide branches when photo is slid */
+    visibility: hidden;
+}
+
+
 .content-section {
-    display: none; /* Initially hide all content sections */
+    display: none; 
     padding: 20px;
     border-bottom: 1px solid #eee;
+    opacity: 0; /* Handled by #contentArea.section-active now for initial load*/
+    transition: opacity 0.5s 0.3s ease-in-out; /* Delay opacity for content to appear after slide */
 }
 
 .content-section:last-child {
@@ -80,7 +172,8 @@ header {
 }
 
 .content-section.active {
-    display: block; /* Show active section */
+    display: block; 
+    opacity: 1;
 }
 
 .content-section h2 {
@@ -88,7 +181,6 @@ header {
     color: #007bff;
 }
 
-/* Styling for Education and Experience sections */
 #educationContainer article, #experienceContainer article {
     margin-bottom: 20px;
 }
@@ -105,14 +197,14 @@ header {
 .project-tiles {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Increased gap */
+    gap: 20px; 
 }
 
 .tile {
     background-color: #e9ecef;
-    padding: 15px; /* Adjusted padding */
-    border-radius: 8px; /* Smoother radius */
-    flex-basis: calc(50% - 10px); /* Adjust for 2 columns, considering gap */
+    padding: 15px; 
+    border-radius: 8px; 
+    flex-basis: calc(50% - 10px); 
     box-sizing: border-box;
     text-align: center;
     cursor: pointer;
@@ -136,7 +228,6 @@ header {
     color: #333;
 }
 
-/* Styling for Contact section */
 #contactContainer p {
     margin-bottom: 10px;
 }
