@@ -35,7 +35,13 @@ function App() {
     } catch (err) {
       console.error('Error fetching GitHub profile:', err);
       setError('Failed to load GitHub profile information.');
-      // Keep userProfile as null or set a default
+      // Set a fallback profile
+      setUserProfile({
+        name: 'Pragadeshwar Vishnu',
+        avatarUrl: '/data/profile_photo.jpg',
+        bio: 'Software Development Engineer in Test specializing in AI/ML testing and automation frameworks.',
+        githubUrl: 'https://github.com/mkpvishnu',
+      });
     }
   }, []);
 
@@ -115,6 +121,8 @@ function App() {
         onProjectSelect={handleProjectSelect} // Pass this down for project list to use
         onClose={handleCloseContent} // For back buttons within content display
         isHeaderExpanded={isHeaderExpanded}
+        userProfile={userProfile} // Pass userProfile for blog landing
+        onSectionSelect={handleSectionSelect} // Pass section navigation function
       />
       {error && <div className="error-message">{error}</div>}
     </div>

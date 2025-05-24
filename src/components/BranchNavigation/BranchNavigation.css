@@ -20,7 +20,7 @@
   left: auto;
   margin-top: 20px;
   flex-direction: column; /* Or 'row' if you want them side-by-side */
-  gap: 10px;
+  gap: 12px;
 }
 
 .branch-navigation.header-collapsed {
@@ -30,6 +30,7 @@
   left: 50%;
   transform: translateX(-50%); 
   width: auto;
+  gap: 8px;
 }
 
 @keyframes fadeInButtons {
@@ -43,35 +44,64 @@
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 10px 15px;
+  padding: 12px 18px;
   margin: 5px 0; /* Spacing for vertical stack */
-  border-radius: 20px;
+  border-radius: 25px;
   cursor: pointer;
   font-size: 0.9em;
   font-weight: 500;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-  min-width: 120px; /* Ensure buttons have a decent width */
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  min-width: 140px; /* Ensure buttons have a decent width */
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .branch-navigation.header-expanded .branch-button {
-   background-color: rgba(0, 123, 255, 0.15); /* More subtle when header is expanded */
+   background-color: rgba(0, 123, 255, 0.12); /* More subtle when header is expanded */
    color: #007bff;
+   box-shadow: 0 2px 12px rgba(0, 123, 255, 0.15);
 }
 
 .branch-navigation.header-collapsed .branch-button {
   /* Buttons are more prominent when header is collapsed */
-  padding: 8px 10px;
+  padding: 10px 12px;
   font-size: 0.8em;
   min-width: auto;
-  width: 80%; /* Fit within the collapsed header */
-  max-width: 100px;
+  width: 85%; /* Fit within the collapsed header */
+  max-width: 110px;
+  gap: 6px;
 }
 
+.button-icon {
+  font-size: 1.1em;
+  display: inline-block;
+}
+
+.button-label {
+  font-weight: 500;
+}
+
+.branch-navigation.header-collapsed .button-icon {
+  font-size: 1em;
+}
+
+.branch-navigation.header-collapsed .button-label {
+  font-size: 0.85em;
+}
 
 .branch-button:hover {
   background-color: #0056b3;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 86, 179, 0.3);
+}
+
+.branch-navigation.header-expanded .branch-button:hover {
+  background-color: #007bff;
   color: white;
   transform: translateY(-2px);
 }
@@ -100,8 +130,17 @@
   .branch-button,
   .branch-navigation.header-collapsed .branch-button {
     width: auto;
-    min-width: 100px;
-    font-size: 0.85em;
-    padding: 8px 12px;
+    min-width: 110px;
+    font-size: 0.8em;
+    padding: 10px 14px;
+    gap: 6px;
+  }
+
+  .button-icon {
+    font-size: 1em;
+  }
+
+  .button-label {
+    font-size: 0.8em;
   }
 } 

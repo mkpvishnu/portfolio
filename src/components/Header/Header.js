@@ -6,11 +6,12 @@ const Header = ({ userProfile, onSectionSelect, onLogoClick, isExpanded }) => {
   const [isHovering, setIsHovering] = useState(false);
 
   const navItems = [
-    { id: 'education', label: 'Education' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' },
+    { id: 'blog', label: 'Blog', icon: '📝' },
+    { id: 'education', label: 'Education', icon: '🎓' },
+    { id: 'skills', label: 'Skills', icon: '🛠️' },
+    { id: 'experience', label: 'Experience', icon: '💼' },
+    { id: 'projects', label: 'Projects', icon: '💻' },
+    { id: 'contact', label: 'Contact', icon: '📞' },
   ];
 
   return (
@@ -21,7 +22,7 @@ const Header = ({ userProfile, onSectionSelect, onLogoClick, isExpanded }) => {
     >
       <div className="profile-intro">
         <img 
-          src={userProfile?.avatarUrl || './default-avatar.png'} // Provide a default avatar
+          src={userProfile?.avatarUrl || '/data/profile_photo.jpg'} 
           alt={userProfile?.name || 'User'}
           className="profile-photo" 
           onClick={onLogoClick} // Clicking photo closes content/expands header
@@ -29,7 +30,7 @@ const Header = ({ userProfile, onSectionSelect, onLogoClick, isExpanded }) => {
         {isExpanded && (
           <>
             <h1>{userProfile?.name || 'Your Name'}</h1>
-            <p className="tagline">{userProfile?.bio || 'Your professional tagline here.'}</p>
+            <p className="tagline">{userProfile?.bio || 'Software Development Engineer in Test'}</p>
           </>
         )}
       </div>

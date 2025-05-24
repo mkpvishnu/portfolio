@@ -76,10 +76,17 @@ const ExperienceDisplay = ({ experienceData }) => {
           <div className="company-header">
             {companyExp.companyId && (
               <img 
-                src={`/data/${companyExp.companyId}.ico`} 
+                src={`/data/${companyExp.companyId}.jpg`} 
                 alt={`${companyExp.company} logo`} 
                 className="company-logo"
-                onError={(e) => { e.target.style.display = 'none'; }}
+                onError={(e) => { 
+                  // Try .ico format if .jpg fails
+                  if (e.target.src.includes('.jpg')) {
+                    e.target.src = `/data/${companyExp.companyId}.ico`;
+                  } else {
+                    e.target.style.display = 'none';
+                  }
+                }}
               />
             )}
             <div className="company-info">

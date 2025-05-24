@@ -4,6 +4,7 @@ import ProjectsList from '../ProjectsList/ProjectsList';
 import ProjectDetail from '../ProjectDetail/ProjectDetail';
 import ExperienceDisplay from '../ExperienceDisplay/ExperienceDisplay';
 import SkillsDisplay from '../SkillsDisplay/SkillsDisplay';
+import BlogLanding from '../BlogLanding/BlogLanding';
 
 const ContentDisplay = ({
   activeSection,
@@ -16,14 +17,24 @@ const ContentDisplay = ({
   onProjectSelect,
   onClose, // To handle back/close actions within content
   isHeaderExpanded,
+  userProfile,
+  onSectionSelect, // Add this prop to handle navigation from blog landing
 }) => {
   let content = null;
 
-  if (isHeaderExpanded) { // If header is expanded, no content is shown here
-    return <main className={`content-display anmt-hide ${isHeaderExpanded ? 'header-expanded' : 'header-collapsed'}`}></main>;
+  // Show BlogLanding when header is expanded (default state)
+  if (isHeaderExpanded) {
+    return (
+      <main className={`content-display blog-landing-container ${isHeaderExpanded ? 'header-expanded' : 'header-collapsed'}`}>
+        <BlogLanding userProfile={userProfile} onNavigate={onSectionSelect} />
+      </main>
+    );
   }
 
   switch (activeSection) {
+    case 'blog':
+      content = <BlogLanding userProfile={userProfile} onNavigate={onSectionSelect} />;
+      break;
     case 'education':
       content = (
         <section className="content-section education-section">
@@ -66,23 +77,36 @@ const ContentDisplay = ({
         content = (
             <section className="content-section contact-section">
               <h2>Contact Me</h2>
-              <p><strong>Email:</strong> <a href={`mailto:${contactData.email}`}>{contactData.email}</a></p>
-              <p><strong>LinkedIn:</strong> <a href={contactData.linkedin} target="_blank" rel="noopener noreferrer">View Profile</a></p>
-              <p><strong>GitHub:</strong> <a href={contactData.github} target="_blank" rel="noopener noreferrer">View Profile</a></p>
-              {/* Add more contact methods as needed */}
+              <div className="contact-grid">
+                <div className="contact-item">
+                  <div className="contact-icon">📧</div>
+                  <h3>Email</h3>
+                  <a href={`mailto:${contactData.email}`}>{contactData.email}</a>
+                </div>
+                <div className="contact-item">
+                  <div className="contact-icon">💼</div>
+                  <h3>LinkedIn</h3>
+                  <a href={contactData.linkedin} target="_blank" rel="noopener noreferrer">View Profile</a>
+                </div>
+                <div className="contact-item">
+                  <div className="contact-icon">💻</div>
+                  <h3>GitHub</h3>
+                  <a href={contactData.github} target="_blank" rel="noopener noreferrer">View Profile</a>
+                </div>
+              </div>
             </section>
         );
         break;
     default:
-      // No section selected, or header is expanded
-      // The main return handles the isHeaderExpanded case already
+      // Fallback content
+      content = <BlogLanding userProfile={userProfile} onNavigate={onSectionSelect} />;
       break;
   }
 
   return (
     <main className={`content-display ${activeSection ? 'anmt-show' : 'anmt-hide'} ${isHeaderExpanded ? 'header-expanded' : 'header-collapsed'}`}>
-      {activeSection && activeSection !== 'projectDetail' && activeSection !== 'projects' && (
-        <button onClick={onClose} className="back-button main-back-button">← Back</button>
+      {activeSection && activeSection !== 'projectDetail' && activeSection !== 'projects' && activeSection !== 'blog' && (
+        <button onClick={onClose} className="back-button main-back-button">Close</button>
       )}
       {content}
     </main>

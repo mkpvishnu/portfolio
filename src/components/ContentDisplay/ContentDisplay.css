@@ -8,14 +8,24 @@
               opacity 0.5s cubic-bezier(0.77, 0, 0.175, 1),
               padding-left 0.5s cubic-bezier(0.77, 0, 0.175, 1);
   position: relative; /* For back button positioning */
+  min-height: 100vh;
 }
 
 .content-display.header-collapsed {
   padding-left: calc(100px + 40px); /* Adjust padding when header is collapsed */
 }
 
+.content-display.blog-landing-container {
+  padding: 0; /* Remove padding for blog landing */
+  padding-left: 350px; /* Still account for header width */
+}
+
+.content-display.blog-landing-container.header-collapsed {
+  padding-left: 100px; /* Account for collapsed header */
+}
+
 .content-display.anmt-hide {
-  transform: translateX(100%);
+  transform: translateX(50px);
   opacity: 0;
   pointer-events: none;
 }
@@ -29,25 +39,39 @@
 .content-section {
   background-color: #fff;
   padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
   animation: sectionFadeIn 0.6s ease-out forwards;
   opacity: 0; /* Start hidden for animation */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 @keyframes sectionFadeIn {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .content-section h2 {
-  font-size: 2em;
-  color: #34495e;
+  font-size: 2.2em;
+  color: #2c3e50;
   margin-top: 0;
-  margin-bottom: 25px;
-  border-bottom: 2px solid #007bff;
-  padding-bottom: 10px;
+  margin-bottom: 30px;
+  border-bottom: 3px solid #007bff;
+  padding-bottom: 15px;
   display: inline-block;
+  position: relative;
+}
+
+.content-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  border-radius: 2px;
 }
 
 .education-item, .experience-item {
@@ -74,18 +98,59 @@
   font-style: italic;
 }
 
-.contact-section p {
-    font-size: 1.1em;
-    margin-bottom: 15px;
+/* Contact Section Styling */
+.contact-section {
+  text-align: center;
 }
 
-.contact-section a {
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-item {
+  background: #f8f9fa;
+  padding: 30px 20px;
+  border-radius: 15px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.contact-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-color: #007bff;
+}
+
+.contact-icon {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.contact-item h3 {
+  font-size: 1.3em;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.contact-item a {
     color: #007bff;
     text-decoration: none;
     font-weight: 500;
+    transition: color 0.2s ease;
+    font-size: 1.1em;
 }
 
-.contact-section a:hover {
+.contact-item a:hover {
+    color: #0056b3;
     text-decoration: underline;
 }
 
@@ -93,47 +158,83 @@
   background-color: #6c757d;
   color: white;
   border: none;
-  padding: 10px 18px;
-  border-radius: 20px;
+  padding: 12px 20px;
+  border-radius: 25px;
   cursor: pointer;
   font-size: 0.9em;
   font-weight: 500;
-  transition: background-color 0.2s ease;
-  margin-bottom: 20px;
-  display: inline-block;
+  transition: all 0.3s ease;
+  margin-bottom: 25px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .back-button:hover {
   background-color: #545b62;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .main-back-button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+    position: fixed;
+    top: 30px;
+    right: 30px;
     background-color: #007bff;
+    z-index: 1000;
+    font-size: 0.85em;
+    padding: 10px 16px;
 }
+
 .main-back-button:hover {
     background-color: #0056b3;
+}
+
+.main-back-button::before {
+    content: '✕';
+    margin-right: 5px;
+    font-weight: bold;
 }
 
 /* Responsive adjustments for content area */
 @media (max-width: 768px) {
   .content-display,
-  .content-display.header-collapsed {
-    padding: 20px; /* Simpler padding on mobile */
+  .content-display.header-collapsed,
+  .content-display.blog-landing-container,
+  .content-display.blog-landing-container.header-collapsed {
+    padding: 20px;
+    padding-top: 80px; /* Account for fixed back button */
+    padding-left: 20px; /* Simplified for mobile */
+  }
+
+  .content-section {
+    padding: 20px;
+    margin-top: 10px;
   }
 
   .content-section h2 {
     font-size: 1.8em;
+    margin-bottom: 20px;
   }
 
   .education-item h3, .experience-item h3 {
     font-size: 1.3em;
   }
+  
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .contact-item {
+    padding: 25px 15px;
+  }
+  
   .main-back-button {
-    top: 10px;
-    right: 10px;
-    padding: 8px 15px;
+    top: 15px;
+    right: 15px;
+    padding: 8px 12px;
+    font-size: 0.8em;
   }
 } 

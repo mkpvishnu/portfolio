@@ -15,7 +15,8 @@ const BranchNavigation = ({ items, onSelect, isVisible, isHeaderExpanded }) => {
           onClick={() => onSelect(item.id)}
           style={{ '--branch-index': index }} // For staggered animations or positioning if needed
         >
-          {item.label}
+          {item.icon && <span className="button-icon">{item.icon}</span>}
+          <span className="button-label">{item.label}</span>
         </button>
       ))}
     </nav>
